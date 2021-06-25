@@ -1,0 +1,10 @@
+DELIMITER !!
+CREATE EVENT eve2
+ON SCHEDULE every 1 MINUTE
+COMMENT 'Clears old records from the delegation table.'
+DO 
+BEGIN
+DELETE FROM levels 
+WHERE `dates` < (NOW() - INTERVAL 1 DAY);
+END !!
+DELIMITER ;
